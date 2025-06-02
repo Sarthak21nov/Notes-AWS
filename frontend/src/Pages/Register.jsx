@@ -1,11 +1,14 @@
 import React from 'react'
 import { useState } from 'react'
 import Navbar from '../Components/Navbar'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Register() {
   const [userID, setUserID] = useState("")
   const [password, setPassword] = useState("")
   const [name, setName] = useState("")
+  const navigate = useNavigate()
 
   const HandleUserIDChange = (e)=>{
     setUserID(e.target.value)
@@ -17,12 +20,35 @@ function Register() {
   const HandleNameChange = (e)=>{
     setName(e.target.value)
   }
-  const HandleSubmit = ()=>{
+  const HandleSubmit = async (e)=>{
+    e.preventDefault()
+
     if(name === userID){
       alert("Name and UserID should not be same")
       setName("")
       setUserID("")
     }
+
+    // Change to url with the backend url
+    try{
+      const response = await axios.post('http://localhost:5000/api/v1/auth/register', {
+        name, userID, password
+      }, {
+        withCredentials: true
+      })
+
+      if(response.data.success){
+        alert(response.data.message)
+        navigate('/')
+      } else{
+        alert(response.data.message)
+      }
+
+    } catch(err){
+      alert("An unknown Error occurred, No issue from server side")
+    }
+
+
     setName("")
     setPassword("")
     setUserID("")

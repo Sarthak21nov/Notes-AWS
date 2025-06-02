@@ -1,6 +1,8 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from "axios"
 
 function NotesPage() {
   const [title, setTitle] = useState("")
@@ -16,10 +18,47 @@ function NotesPage() {
     setContent(e.target.value)
   }
 
-  const HandleSubmit = ()=>{
-    setTitle("")
-    setContent("")
+  const HandleSubmit = async (e)=>{
+    e.preventDefault()
+
+    // Change url with AWS-URL
+    try{
+      const response = await axios.put(`http://localhost:5000/api/v1/notes/${id}`, {
+        title, content
+      }, {
+        withCredentials: true
+      })
+      if(response.data.success){
+        alert(response.data.message)
+      } else{
+        alert(response.data.message)
+      }
+    } catch(err){
+        alert("An Unknown error occurred")
+    }
   }
+
+  const loadData = async () => {
+    // Change url with AWS-Backend url
+    try{
+      const response = await axios.get('http://localhost:5000/api/v1/notes/getNotesBasedOnId', {
+        withCredentials: true,
+        params: {id: id}
+      })
+      if(response.data.success){
+        setTitle(response.data.note.title)
+        setContent(response.data.note.content)
+      } else{
+          alert(response.data.message)
+      }
+    } catch(err){
+      alert("An unknown error occurred")
+    }
+  }
+
+  useEffect(()=>{
+    loadData()
+  }, [])
   
   return (
     <div>

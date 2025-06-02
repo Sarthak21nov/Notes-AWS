@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 import Navbar from '../Components/Navbar.jsx'
 import '../App.css'
+import axios from "axios"
+import { useNavigate } from 'react-router-dom'
+
 
 function Login() {
 
   const [userID, setUserID] = useState("")
   const [password, setPassword] = useState("")
+  const navigate = useNavigate()
 
   const HandleUserIDChange = (e)=>{
     setUserID(e.target.value)
@@ -13,7 +17,35 @@ function Login() {
   const HandlePasswordChange = (e)=>{
     setPassword(e.target.value)
   }
-  const HandleSubmit = ()=>{
+
+  const NavigateToRegister = () => {
+    navigate('/register')
+  }
+
+  const HandleSubmit = async (e)=>{
+
+    e.preventDefault()
+    
+    // Change url with AWS-backend url
+    try{
+      const response = await axios.post('http://localhost:5000/api/v1/auth/login',{
+        userID, password
+      }, {
+         withCredentials: true
+      })
+      console.log(response)
+      if(response.data.success){
+        alert(response.data.message)
+        localStorage.setItem("Name", response.data.user)
+        navigate('/Dashboard')
+      } else{
+        alert(response.data.message)
+      }
+    } catch(err){
+      console.error("Login failed", error);
+      alert(error.response?.data?.message || "Something went wrong!");
+    }
+
     setPassword("")
     setUserID("")
   }
@@ -32,6 +64,10 @@ function Login() {
               <button className='p-2 bg-red-100 m-3 rounded-2xl' onClick={HandleSubmit}>Login</button>
             </div>
           </form>
+          <div className='flex'>
+            <h4 className='ml-2'>Doesn't have an Account? Create one here: </h4>
+            <p className='ml-4 text-blue-500 hover:cursor-pointer' onClick={NavigateToRegister}>Register</p>
+          </div>
         </div>
       </div>
     </div>

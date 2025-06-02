@@ -28,7 +28,10 @@ const PORT = process.env.PORT || 8000
 
 // Middlewares
 server.use(express.json())
-server.use(cors())
+server.use(cors({
+    origin: "http://localhost:5173", 
+    credentials: true
+}))
 server.use(cookieParser())
 
 // Routes

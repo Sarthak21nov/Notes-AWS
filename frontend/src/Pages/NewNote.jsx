@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import axios from "axios"
 
 function NewNote() {
   const [title, setTitle] = useState("")
@@ -13,9 +14,24 @@ function NewNote() {
     setContent(e.target.value)
   }
 
-  const HandleSubmit = ()=>{
-    setTitle("")
-    setContent("")
+  const HandleSubmit = async (e)=>{
+    e.preventDefault()
+    // Change the url to AWS-backend url
+    try{
+      const response = await axios.post('http://localhost:5000/api/v1/notes/addNotes', {
+        title, content
+      }, {
+        withCredentials: true
+      })
+
+      if(response.data.success){
+        alert(response.data.message)
+      } else{
+        alert(response.data.message)
+      }
+    } catch(err){
+        alert("Error Adding the Note")
+    }
   }
   
   return (

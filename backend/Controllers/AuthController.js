@@ -22,8 +22,9 @@ export const login = async (req,res)=>{
         
         return res.cookie("token", token, {
             httpOnly: true,
-            secure: true,
-            sameSite: "Strict"
+            secure: false,
+            sameSite: "Strict",
+            maxAge: 24*60*60*1000
         }).status(200).json({success: true, message: "Logged In Successfully", token: token, user: user.name})
     } catch(err){
         return res.status(400).json({success: false, message: "An error Occurred"})
