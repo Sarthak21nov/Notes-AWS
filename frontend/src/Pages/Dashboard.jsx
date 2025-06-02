@@ -16,7 +16,7 @@ function Dashboard() {
   const loadNotes = async () => {
     // Change url with backend url
     try{
-      const response = await axios.get('http://ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/notes/getNotes', {
+      const response = await axios.get('https://ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/notes/getNotes', {
         withCredentials: true
       })
       if(response.data.success){
