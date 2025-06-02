@@ -31,7 +31,7 @@ function Register() {
 
     // Change to url with the backend url
     try{
-      const response = await axios.post('http://localhost:5000/api/v1/auth/register', {
+      const response = await axios.post('ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/auth/register', {
         name, userID, password
       }, {
         withCredentials: true
