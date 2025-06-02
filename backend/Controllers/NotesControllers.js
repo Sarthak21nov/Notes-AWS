@@ -5,6 +5,17 @@ export const getNotes = async (req,res)=>{
     return res.status(200).json({success: true, message: "Here is your result", notes: notes})
 }
 
+export const getNotesBasedOnId = async (req,res)=>{
+    const { id } = req.query; 
+    try {
+        const note = await Notes.findById(id);
+        if (!note) return res.status(400).json({ success: false, message: "Cannot find Note" });
+        return res.status(200).json({ success: true, note });
+    } catch (err) {
+        return res.status(500).json({ success: false, message: "An error occurred", error: err.message });
+    }
+}
+
 export const addNotes = async (req,res)=>{
     const user = req.user
     const {title, content} = req.body

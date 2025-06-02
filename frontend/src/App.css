@@ -1,0 +1,8 @@
+.glow {
+    box-shadow: 0 0 20px 5px rgba(102, 103, 103, 0.6); /* Blue glow */
+    transition: box-shadow 0.3s ease-in-out; /* Smooth glow effect */
+}
+
+.glow:hover {
+    box-shadow: 0 0 30px 10px rgba(227, 160, 160, 0.6); /* Stronger glow on hover */
+}
