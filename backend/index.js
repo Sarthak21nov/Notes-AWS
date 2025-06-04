@@ -29,9 +29,9 @@ const PORT = process.env.PORT || 8000
 // Middlewares
 server.use(express.json())
 server.use(cors({
-    origin: "https://notes-aws.vercel.app/", 
-    credentials: true
-}))
+  origin: 'https://notes-aws.vercel.app',
+  credentials: true,
+}));
 server.use(cookieParser())
 
 // Routes
