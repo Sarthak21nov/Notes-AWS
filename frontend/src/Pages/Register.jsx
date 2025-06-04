@@ -31,7 +31,7 @@ function Register() {
 
     // Change to url with the backend url
     try{
-      const response = await axios.post('https://notes-aws.duckdns.org:5000/api/v1/auth/register', {
+      const response = await axios.post('https://notes-aws.duckdns.org/api/v1/auth/register', {
         name, userID, password
       }, {
         withCredentials: true

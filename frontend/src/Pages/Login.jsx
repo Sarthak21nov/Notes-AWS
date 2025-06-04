@@ -28,7 +28,7 @@ function Login() {
     
     // Change url with AWS-backend url
     try{
-      const response = await axios.post('https://notes-aws.duckdns.org:5000/api/v1/auth/login',{
+      const response = await axios.post('https://notes-aws.duckdns.org/api/v1/auth/login',{
         userID, password
       }, {
          withCredentials: true

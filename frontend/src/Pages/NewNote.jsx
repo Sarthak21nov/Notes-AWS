@@ -18,7 +18,7 @@ function NewNote() {
     e.preventDefault()
     // Change the url to AWS-backend url
     try{
-      const response = await axios.post('https://notes-aws.duckdns.org:5000/api/v1/notes/addNotes', {
+      const response = await axios.post('https://notes-aws.duckdns.org/api/v1/notes/addNotes', {
         title, content
       }, {
         withCredentials: true
