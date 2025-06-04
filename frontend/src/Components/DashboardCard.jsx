@@ -14,7 +14,7 @@ function DashboardCard(props) {
         // Change url with backend url
         try{
             const id = props.id
-            const response = await axios.delete(`https://ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/notes/${id}`, {
+            const response = await axios.delete(`https://notes-aws.duckdns.org:5000/api/v1/notes/${id}`, {
                 withCredentials: true
             })
             if(response.data.success){

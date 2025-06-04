@@ -23,7 +23,7 @@ function NotesPage() {
 
     // Change url with AWS-URL
     try{
-      const response = await axios.put(`https://ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/notes/${id}`, {
+      const response = await axios.put(`https://notes-aws.duckdns.org:5000/api/v1/notes/${id}`, {
         title, content
       }, {
         withCredentials: true
@@ -41,7 +41,7 @@ function NotesPage() {
   const loadData = async () => {
     // Change url with AWS-Backend url
     try{
-      const response = await axios.get('https://ec2-13-203-50-27.ap-south-1.compute.amazonaws.com:5000/api/v1/notes/getNotesBasedOnId', {
+      const response = await axios.get('https://notes-aws.duckdns.org:5000/api/v1/notes/getNotesBasedOnId', {
         withCredentials: true,
         params: {id: id}
       })
