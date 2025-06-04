@@ -53,7 +53,7 @@ function Login() {
     <div>
       <Navbar/>
       <div className='w-full h-full flex justify-center items-center'>
-        <div className='md:w-[60vh] md:h-[45vh] w-[30vh] h-[36vh] shadow-2xl rounded-2xl md:mt-[30vh] mt-[60%] glow bg-slate-50'>
+        <div className='md:w-[60vh] md:min-h-[45vh] w-[30vh] min-h-[36vh] shadow-2xl rounded-2xl md:mt-[30vh] mt-[60%] glow bg-slate-50'>
           <p className='text-center text-2xl p-3 font-serif mt-5'>Login to Continue</p>
           <form className='flex-col p-4'>
             <p className='text-xl p-2'>User-ID</p>
@@ -66,7 +66,7 @@ function Login() {
           </form>
           <div className='flex'>
             <h4 className='ml-2'>Doesn't have an Account? Create one here: </h4>
-            <p className='ml-4 text-blue-500 hover:cursor-pointer' onClick={NavigateToRegister}>Register</p>
+            <p className='ml-1 text-blue-500 hover:cursor-pointer' onClick={NavigateToRegister}>Register</p>
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@ function Register() {
     <div>
       <Navbar/>
       <div className='w-full h-full flex justify-center items-center'>
-        <div className='md:w-[60vh] md:h-[60vh] w-[30vh] h-[45vh] shadow-2xl rounded-2xl md:mt-[20vh] mt-[60%] glow bg-slate-50'>
+        <div className='md:w-[60vh] md:h-[60vh] w-[30vh] h-[55vh] shadow-2xl rounded-2xl md:mt-[20vh] mt-[60%] glow bg-slate-50'>
           <p className='text-center text-2xl p-3 font-serif mt-5'>New User? Signup Here</p>
           <form className='flex-col p-4'>
             <p className='text-xl p-2'>Name</p>
